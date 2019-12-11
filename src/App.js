@@ -25,3 +25,4 @@ function App() {
 }
 
 export default App;
+// Hooked the App up to Firebase
