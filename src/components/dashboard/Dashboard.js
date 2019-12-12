@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Notifications from './Notifications'
 import ProjectList from '../projects/ProjectList'
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class Dashboard extends Component {
     render() {
@@ -23,8 +25,18 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        project: state.project.projects
+        projects: state.project.projects
     }
 }
 
+// This line works
 export default connect(mapStateToProps)(Dashboard)
+
+//However when you change the above to this it breaks and I can't quite figure out why, tried importing all 
+//variations of firebase to no avail
+/*export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'projects' }
+    ])
+)(Dashboard)*/
